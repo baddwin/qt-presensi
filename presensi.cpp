@@ -3,6 +3,7 @@
 
 #include <QFont>
 #include <QTimer>
+#include <QTime>
 #include <stdio.h>
 #include <stdlib.h>
 #include "opencv/cv.h"
@@ -34,7 +35,7 @@ Mat src_gray;
 struct zint_symbol *my_symbol;
 
 CvCapture* capture;
-QTimer *timer;
+QTimer *timer = new QTimer();
 int symbology = 1;
 
 void thresh_callback(int, void*);
@@ -46,6 +47,10 @@ Presensi::Presensi(QWidget *parent) :
     ui->setupUi(this);
 //    QFont f("Arial", 28, QFont::Bold);
 //    ui->labelJam->setFont(f);
+
+    QObject::connect(timer,SIGNAL(timeout()),this,SLOT(tampilJam()));
+    timer->start(1000);
+    this->tampilJam();
 
     addListSymbology();
 }
@@ -72,7 +77,7 @@ void Presensi::on_btnOke_clicked()
             cvSetCaptureProperty(capture,CV_CAP_PROP_FRAME_HEIGHT,1600);
             cvSetCaptureProperty(capture,CV_CAP_PROP_FRAME_WIDTH,1600);
 
-            timer = new QTimer(this);
+//            timer = new QTimer(this);
 
             QObject::connect(timer,SIGNAL(timeout()),this,SLOT(ProcessFrame()));
 
@@ -271,4 +276,11 @@ void Presensi::disableBarcode()
 void Presensi::clearAll()
 {
     //
+}
+
+void Presensi::tampilJam()
+{
+    QTime waktu = QTime::currentTime();
+    QString jam = waktu.toString("hh.mm");
+    ui->labelJam->setText(jam);
 }

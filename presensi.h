@@ -30,6 +30,7 @@ private slots:
     void clearAll();
     void disableBarcode();
     void enableQrCode();
+    void tampilJam();
 
 private:
     Ui::Presensi *ui;
