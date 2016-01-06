@@ -135,14 +135,16 @@ int Presensi::ScanIDCard(IplImage *src)
         for(Image::SymbolIterator symbol = zimg->symbol_begin(); symbol != zimg->symbol_end(); ++symbol)
         {
             //Hien thi ket qua len Textbox
-            ui->lineNik->setText(QString::fromStdString(symbol->get_data()));
+//            ui->lineNik->setText(QString::fromStdString(symbol->get_data()));
+            this->tampilkanHasil(QString::fromStdString(symbol->get_data()));
         }
 
     }
 
     else
     {
-        ui->lineNik->setText("Cannot Detect Code!");
+//        ui->lineNik->setText("Cannot Detect Code!");
+        this->tampilkanHasil("CHIGAU_DETA");
     }
 
     //Giai phong tai nguyen
@@ -249,9 +251,17 @@ void Presensi::use_drawRectangle()
 
 }
 
-void Presensi::snake()
+void Presensi::tampilkanHasil(QString kode)
 {
     //
+    if(kode != "CHIGAU_DETA") {
+        ui->lineNik->setText(kode);
+        ui->lineNama->setText("DUMMY");
+        ui->lineJabatan->setText("DUMMY");
+
+        // set icon green, dummy
+        ui->iconStatus->setText("O");
+    }
 }
 
 void Presensi::showImageEncode()
@@ -289,4 +299,9 @@ void Presensi::tampilJam()
     QTime waktu = QTime::currentTime();
     QString jam = waktu.toString("hh.mm");
     ui->labelJam->setText(jam);
+}
+
+void Presensi::on_actionSettings_triggered()
+{
+    //
 }

@@ -89,6 +89,9 @@
         <layout class="QVBoxLayout" name="verticalLayout">
          <item>
           <widget class="QLineEdit" name="lineNik">
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
            <property name="readOnly">
             <bool>true</bool>
            </property>
@@ -96,6 +99,9 @@
          </item>
          <item>
           <widget class="QLineEdit" name="lineNama">
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
            <property name="readOnly">
             <bool>true</bool>
            </property>
@@ -103,6 +109,9 @@
          </item>
          <item>
           <widget class="QLineEdit" name="lineJabatan">
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
            <property name="readOnly">
             <bool>true</bool>
            </property>
@@ -182,7 +191,7 @@
             <string/>
            </property>
            <property name="alignment">
-            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            <set>Qt::AlignCenter</set>
            </property>
           </widget>
          </item>
@@ -204,7 +213,7 @@
             <string/>
            </property>
            <property name="alignment">
-            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            <set>Qt::AlignCenter</set>
            </property>
           </widget>
          </item>
@@ -242,6 +251,12 @@
      <widget class="QPushButton" name="btnOke">
       <property name="text">
        <string>OK</string>
+      </property>
+      <property name="autoDefault">
+       <bool>true</bool>
+      </property>
+      <property name="default">
+       <bool>true</bool>
       </property>
      </widget>
     </item>
@@ -305,6 +320,12 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>btnOke</tabstop>
+  <tabstop>lineNik</tabstop>
+  <tabstop>lineNama</tabstop>
+  <tabstop>lineJabatan</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

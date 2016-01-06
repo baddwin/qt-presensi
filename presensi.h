@@ -26,11 +26,13 @@ private slots:
     void showImageEncode();
     void readFromFileText();
     void use_drawRectangle();
-    void snake();
+    void tampilkanHasil(QString kode);
     void clearAll();
     void disableBarcode();
     void enableQrCode();
     void tampilJam();
+
+    void on_actionSettings_triggered();
 
 private:
     Ui::Presensi *ui;
