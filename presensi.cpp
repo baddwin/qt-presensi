@@ -35,7 +35,7 @@ Mat src_gray;
 struct zint_symbol *my_symbol;
 
 CvCapture* capture;
-QTimer *timer = new QTimer();
+QTimer *timer;
 int symbology = 1;
 
 void thresh_callback(int, void*);
@@ -48,8 +48,11 @@ Presensi::Presensi(QWidget *parent) :
 //    QFont f("Arial", 28, QFont::Bold);
 //    ui->labelJam->setFont(f);
 
-    QObject::connect(timer,SIGNAL(timeout()),this,SLOT(tampilJam()));
-    timer->start(1000);
+//    QTimer * jam = new QTimer(this);
+
+//    QObject::connect(timer,SIGNAL(timeout()),this,SLOT(tampilJam()));
+
+//    timer->start(1000);
     this->tampilJam();
 
     addListSymbology();
@@ -77,13 +80,16 @@ void Presensi::on_btnOke_clicked()
             cvSetCaptureProperty(capture,CV_CAP_PROP_FRAME_HEIGHT,1600);
             cvSetCaptureProperty(capture,CV_CAP_PROP_FRAME_WIDTH,1600);
 
-//            timer = new QTimer(this);
+            timer = new QTimer(this);
 
             QObject::connect(timer,SIGNAL(timeout()),this,SLOT(ProcessFrame()));
+            QObject::connect(timer,SIGNAL(timeout()),this,SLOT(tampilJam()));
 
-            timer->start(1000/30);
+            timer->start(1000/15);
+            this->tampilJam();
+        } else {
+            ui->lineNik->setText("Cannot connect to Camera!");
         }
-        else ui->lineNik->setText("Cannot connect to Camera!");
     }
 
     return ;
