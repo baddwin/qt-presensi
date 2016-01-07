@@ -71,6 +71,7 @@ void Presensi::on_actionAbout_triggered()
 
 void Presensi::on_btnOke_clicked()
 {
+    this->clearAll();
     //Kiem tra trang thai bat tat cua camera
     if(capture == 0)
     {
@@ -85,7 +86,7 @@ void Presensi::on_btnOke_clicked()
             QObject::connect(timer,SIGNAL(timeout()),this,SLOT(ProcessFrame()));
             QObject::connect(timer,SIGNAL(timeout()),this,SLOT(tampilJam()));
 
-            timer->start(1000/15);
+            timer->start(1000/60);
             this->tampilJam();
         } else {
             ui->lineNik->setText("Cannot connect to Camera!");
@@ -292,6 +293,9 @@ void Presensi::disableBarcode()
 void Presensi::clearAll()
 {
     //
+    ui->lineJabatan->clear();
+    ui->lineNama->clear();
+    ui->lineNik->clear();
 }
 
 void Presensi::tampilJam()
